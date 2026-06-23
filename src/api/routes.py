@@ -14,6 +14,7 @@ from src.models.schemas import (
 )
 from src.services.llm_service import LLMService
 from src.services.validation_service import ValidationService
+from src.utils.config import Config
 from src.utils.logger import logger
 
 router = APIRouter(prefix="/api", tags=["SRS Generation"])
@@ -87,7 +88,7 @@ async def generate_srs(request: SRSRequest):
             data=SRSResponse(**fixed_srs),
             metadata={
                 "processing_time_ms": round(processing_time * 1000),
-                "model": "gemini-pro",
+                "model": Config.GEMINI_MODEL,
                 "timestamp": datetime.now().isoformat(),
                 "validation_status": "passed"
             }
