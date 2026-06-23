@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-06-23T18:43:03.827414",
+  "client_request": "We need a system where customers can book appointments online, get reminders, and the admin team can manage bookings. It should be simple, mobile-friendly, and maybe include reports later.",
+  "srs": {
+    "projectOverview": {
+      "projectName": "AcuBook: Online Appointment Management System",
+      "clientDescription": "We need a system where customers can book appointments online, get reminders, and the admin team can manage bookings. It should be simple, mobile-friendly, and maybe include reports later.",
+      "cleanDescription": "Development of a web-based online appointment booking system designed to empower customers with self-service appointment scheduling and automated reminders, while providing the administrative team with comprehensive tools for managing bookings, services, and operational availability. The system prioritizes user-friendliness and mobile accessibility, with future scalability for advanced reporting capabilities.",
+      "businessGoal": "To significantly streamline the appointment scheduling process, enhance overall customer satisfaction through convenient online booking and timely communication, and improve operational efficiency for the administrative team by centralizing booking management."
+    },
+    "objectives": [
+      "Enable customers to effortlessly book and manage appointments online from any device.",
+      "Implement an automated notification system to provide customers with timely appointment reminders.",
+      "Provide the administrative team with a robust, intuitive interface for comprehensive management of appointments, services, and staff availability.",
+      "Ensure the system delivers a simple, intuitive, and mobile-responsive user experience for all stakeholders.",
+      "Establish a foundational architecture that supports future integration of advanced reporting and analytics functionalities."
+    ],
+    "stakeholders": [
+      {
+        "role": "Customer",
+        "description": "Individuals who will use the system to book, view, and potentially cancel their appointments online."
+      },
+      {
+        "role": "Administrative Team Member",
+        "description": "Staff responsible for managing appointments, configuring services, defining availability, and overseeing the booking process."
+      },
+      {
+        "role": "Business Owner/Manager",
+        "description": "The client responsible for the project, interested in operational efficiency, customer satisfaction, and future reporting for business insights."
+      }
+    ],
+    "functionalRequirements": [
+      {
+        "id": "FR-001",
+        "title": "Customer Appointment Booking",
+        "description": "The system shall allow customers to browse available services, view real-time slot availability based on service and staff, select a preferred date and time, and confirm their appointment.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "A customer can select a service from a displayed list.",
+          "A customer can view available time slots for the selected service and date.",
+          "A customer can select an available time slot and provide necessary contact information (e.g., name, email, phone number).",
+          "A customer can review and confirm their booking, receiving instant confirmation on-screen."
+        ]
+      },
+      {
+        "id": "FR-002",
+        "title": "Automated Appointment Reminders",
+        "description": "The system shall automatically send reminders to customers for their upcoming appointments.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "A reminder email is sent to the customer 24 hours prior to their scheduled appointment.",
+          "The reminder email includes appointment details (service, date, time, location/notes).",
+          "The system provides an option for customers to cancel or reschedule their appointment directly from the reminder (if enabled by admin)."
+        ]
+      },
+      {
+        "id": "FR-003",
+        "title": "Admin Booking Management",
+        "description": "The system shall provide an administrative interface for managing all aspects of appointments, including viewing, adding, modifying, and cancelling bookings.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "An admin user can view a comprehensive list of all appointments, with filtering and search capabilities by date, customer, and service.",
+          "An admin user can manually create a new appointment for a customer.",
+          "An admin user can modify details of an existing appointment (e.g., date, time, service, customer contact).",
+          "An admin user can cancel an existing appointment, triggering appropriate notifications to the customer."
+        ]
+      },
+      {
+        "id": "FR-004",
+        "title": "Service and Availability Configuration",
+        "description": "The system shall allow administrative users to configure available services, define staff working hours, and manage appointment slot durations.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "An admin user can add, edit, or delete services, including service name, description, duration, and price.",
+          "An admin user can define the working hours and availability for each staff member or resource.",
+          "The system accurately calculates and displays available booking slots based on configured services, staff availability, and existing bookings."
+        ]
+      },
+      {
+        "id": "FR-005",
+        "title": "Admin User Authentication",
+        "description": "The system shall provide a secure login mechanism for administrative users to access the management interface.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "An admin user can securely log in to the administrative interface using a username and password.",
+          "The system prevents unauthorized access attempts to the administrative interface.",
+          "The system provides a 'forgot password' recovery mechanism for admin users."
+        ]
+      },
+      {
+        "id": "FR-006",
+        "title": "Data Foundation for Reporting",
+        "description": "The system shall store booking and customer data in a structured and accessible format to facilitate future reporting and analytics.",
+        "priority": "MEDIUM",
+        "acceptance_criteria": [
+          "All booking data (customer, service, date, time, status) is stored persistently and is retrievable.",
+          "Customer contact information and service details are stored in a relational manner to bookings.",
+          "The data schema is designed to support queries for metrics like 'bookings per service' or 'bookings per day'."
+        ]
+      }
+    ],
+    "nonFunctionalRequirements": [
+      {
+        "id": "NFR-001",
+        "title": "Usability",
+        "type": "Usability",
+        "description": "The system shall be intuitive and easy to navigate for both customers and administrative users, requiring minimal training."
+      },
+      {
+        "id": "NFR-002",
+        "title": "Mobile Responsiveness",
+        "type": "Compatibility",
+        "description": "The system's user interface shall adapt seamlessly to various screen sizes and devices, including desktops, tablets, and smartphones, without loss of functionality or readability."
+      },
+      {
+        "id": "NFR-003",
+        "title": "Performance",
+        "type": "Performance",
+        "description": "All public-facing pages and administrative functions shall load within 3 seconds under normal usage conditions (up to 50 concurrent users)."
+      },
+      {
+        "id": "NFR-004",
+        "title": "Security",
+        "type": "Security",
+        "description": "The system shall protect sensitive customer data and administrative credentials through encryption and secure authentication protocols, adhering to industry best practices."
+      },
+      {
+        "id": "NFR-005",
+        "title": "Scalability",
+        "type": "Scalability",
+        "description": "The system architecture shall be capable of accommodating a significant increase in the number of services, bookings, and users without requiring a complete redesign, supporting up to 1000 bookings per day."
+      }
+    ],
+    "assumptions": [
+      "Customers have reliable internet access and a valid email address or phone number for reminders.",
+      "The client will provide comprehensive details regarding services, staff availability, and any specific business rules for booking.",
+      "The system will initially focus on a web-based application, not native mobile applications for iOS/Android.",
+      "The client will be responsible for defining content (text, images) for the public-facing booking interface.",
+      "The scope for 'reports later' implies data collection and storage capabilities, with detailed report generation being a potential future phase."
+    ],
+    "constraints": [
+      "Project development must adhere to a defined budget and timeline (to be specified in project plan).",
+      "Compliance with relevant data privacy regulations (e.g., GDPR, CCPA) is mandatory for handling customer data.",
+      "The system must operate on a standard cloud hosting environment (e.g., AWS, Azure, GCP) to ensure availability and scalability.",
+      "Initial deployment will not involve integration with existing POS or CRM systems."
+    ],
+    "acceptanceCriteria": [
+      "All identified CRITICAL and HIGH priority functional requirements are implemented and verified.",
+      "The system successfully passes user acceptance testing (UAT) by both customer representatives and administrative staff.",
+      "The system achieves a minimum score of 80% on a usability heuristic evaluation performed by an independent expert.",
+      "The system demonstrates full mobile responsiveness across common device types and browsers (Chrome, Firefox, Safari, Edge)."
+    ]
+  }
+}

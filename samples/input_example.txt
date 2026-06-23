@@ -1,0 +1,1 @@
+We need a system where customers can book appointments online, get reminders, and the admin team can manage bookings. It should be simple, mobile-friendly, and maybe include reports later.
