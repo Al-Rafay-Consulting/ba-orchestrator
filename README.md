@@ -2,6 +2,10 @@
 
 Convert messy, unstructured client requests into clean, structured Software Requirements Specifications (SRS) in JSON format using AI and automation.
 
+**Live API:** `http://localhost:8000` (when running locally)  
+**Interactive Docs:** `http://localhost:8000/docs`  
+**GitHub:** [irtizazubair19/ba-orchestrator](https://github.com/irtizazubair19/ba-orchestrator)
+
 ## 📋 Project Overview
 
 This project automates the initial requirements gathering phase of software development. Instead of manually converting rambling client requests into structured requirements, the BA Engine Orchestrator uses LLMs (Large Language Models) to intelligently transform unstructured input into professional-grade SRS documents.
@@ -82,16 +86,105 @@ ba-orchestrator/
 - Git and GitHub Desktop
 - Google Gemini API key (free)
 
-### Setup Instructions
+### Quick Start (5 minutes)
 
-#### 1. Clone the Repository
+1. **Clone the repository:**
+```bash
+git clone https://github.com/irtizazubair19/ba-orchestrator.git
+cd ba-orchestrator
+```
 
+2. **Create virtual environment:**
+```bash
+python -m venv venv
+.\venv\Scripts\Activate.ps1  # On Windows
+```
+
+3. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Configure API key:**
+```bash
+# Copy the template
+cp .env.example .env
+
+# Edit .env and add your Gemini API key from https://aistudio.google.com/
+# GEMINI_API_KEY=your_key_here
+```
+
+5. **Start the server:**
+```bash
+python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+6. **Open browser and test:**
+- Interactive API: http://localhost:8000/docs
+- Health check: http://localhost:8000/api/health
+
+### How to Use
+
+**Send a messy client request:**
+
+```bash
+curl -X POST http://localhost:8000/api/generate-srs \
+  -H "Content-Type: application/json" \
+  -d '{
+    "client_request": "We need a system where customers can book appointments online, get reminders, and admin can manage bookings. Should be mobile-friendly."
+  }'
+```
+
+**Expected response (structured SRS JSON):**
+
+```json
+{
+  "success": true,
+  "data": {
+    "projectOverview": {
+      "projectName": "Service Appointment Management System",
+      "businessGoal": "Enable efficient appointment management..."
+    },
+    "functionalRequirements": [
+      {
+        "id": "FR-001",
+        "title": "User Account Management",
+        "description": "...",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [...]
+      }
+    ],
+    "nonFunctionalRequirements": [...],
+    "stakeholders": [...],
+    ...
+  },
+  "metadata": {
+    "processing_time_ms": 18094,
+    "model": "gemini-2.5-flash",
+    "timestamp": "2026-06-23T18:45:01.438126"
+  }
+}
+```
+
+---
+
+## 🏗️ Getting Started
+
+### Prerequisites
+
+- Python 3.9 or higher
+- Git and GitHub Desktop
+- Google Gemini API key (free)
+
+### Quick Start (5 minutes)
+
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/yourusername/ba-orchestrator.git
 cd ba-orchestrator
 ```
 
-#### 2. Create a Python Virtual Environment
+2. **Create a Python Virtual Environment**
 
 **Why virtual environment?**
 - Isolates project dependencies
@@ -106,13 +199,13 @@ python -m venv venv
 # You should see (venv) in your terminal
 ```
 
-#### 3. Install Dependencies
+3. **Install Dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 4. Configure Your API Key
+4. **Configure Your API Key**
 
 ```bash
 # Copy the example file
@@ -122,7 +215,7 @@ cp .env.example .env
 # GEMINI_API_KEY=your_actual_key_here
 ```
 
-#### 5. Run the Application
+5. **Run the Application**
 
 ```bash
 python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
@@ -133,7 +226,7 @@ You should see:
 INFO:     Uvicorn running on http://127.0.0.1:8000
 ```
 
-#### 6. Test the Webhook
+6. **Test the Webhook**
 
 Use Postman or cURL:
 
@@ -173,6 +266,43 @@ Converts a messy client request into structured SRS JSON.
   }
 }
 ```
+
+## ✅ Testing Results
+
+The API has been tested and is **working successfully** with real requests. Here are the actual performance metrics:
+
+### Test Case: Appointment Booking System
+
+**Input Request:**
+```
+"We need a system where customers can book appointments online, get reminders, 
+and admin can manage bookings. Should be mobile-friendly."
+```
+
+**Output Metrics:**
+- ✓ **HTTP Status:** 200 OK
+- ✓ **Processing Time:** ~18-20 seconds (limited by Gemini API latency)
+- ✓ **Output Validation:** Passed schema validation
+- ✓ **Functional Requirements Generated:** 6 requirements
+- ✓ **Non-Functional Requirements Generated:** 5 requirements
+- ✓ **Stakeholders Identified:** 3 stakeholders
+
+**Generated SRS Structure:**
+```
+✓ Project Overview (name, business goal, scope)
+✓ Functional Requirements (6 FR with IDs: FR-001 through FR-006)
+✓ Non-Functional Requirements (5 NFR with IDs: NFR-001 through NFR-005)
+✓ Stakeholders (admin, customer, support staff)
+✓ Assumptions (5 key assumptions documented)
+✓ Constraints (technical and business constraints)
+✓ Dependencies (external systems identified)
+```
+
+**Model:** `gemini-2.5-flash` (latest available)
+
+See [sample output](samples/output_example.json) for complete generated SRS.
+
+---
 
 ## 🤖 LLM Prompt Strategy
 
