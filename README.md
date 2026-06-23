@@ -168,74 +168,6 @@ curl -X POST http://localhost:8000/api/generate-srs \
 
 ---
 
-## 🏗️ Getting Started
-
-### Prerequisites
-
-- Python 3.9 or higher
-- Git and GitHub Desktop
-- Google Gemini API key (free)
-
-### Quick Start (5 minutes)
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/yourusername/ba-orchestrator.git
-cd ba-orchestrator
-```
-
-2. **Create a Python Virtual Environment**
-
-**Why virtual environment?**
-- Isolates project dependencies
-- Prevents conflicts with other Python projects
-- Industry standard practice
-
-```powershell
-# On Windows PowerShell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-
-# You should see (venv) in your terminal
-```
-
-3. **Install Dependencies**
-
-```bash
-pip install -r requirements.txt
-```
-
-4. **Configure Your API Key**
-
-```bash
-# Copy the example file
-cp .env.example .env
-
-# Edit .env and add your Gemini API key
-# GEMINI_API_KEY=your_actual_key_here
-```
-
-5. **Run the Application**
-
-```bash
-python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-You should see:
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000
-```
-
-6. **Test the Webhook**
-
-Use Postman or cURL:
-
-```bash
-curl -X POST http://localhost:8000/api/generate-srs \
-  -H "Content-Type: application/json" \
-  -d '{"client_request": "We need a booking system..."}'
-```
-
 ## 📊 API Endpoints
 
 ### POST /api/generate-srs
@@ -261,8 +193,9 @@ Converts a messy client request into structured SRS JSON.
   },
   "metadata": {
     "processing_time_ms": 2345,
-    "model": "gemini-pro",
-    "tokens_used": 1234
+    "model": "gemini-2.5-flash",
+    "timestamp": "2026-06-23T18:45:01.438126",
+    "validation_status": "passed"
   }
 }
 ```
