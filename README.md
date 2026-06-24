@@ -324,6 +324,30 @@ type samples/input_example.txt | curl -X POST http://localhost:8000/api/generate
 # See tests/test_api.py for detailed examples
 ```
 
+## 📦 Assignment Deliverables
+
+- GitHub Repository URL: https://github.com/irtizazubair19/ba-orchestrator
+- Pull Request URL: https://github.com/irtizazubair19/ba-orchestrator/pull/1
+- Source Code: Included in `src/`
+- Sample Input: `samples/input_example.txt`
+- Sample Output: `samples/output_example.json`
+- API Test Outputs: Generated in `outputs/`
+
+## 📸 Evidence Screenshots
+
+The following screenshots are included for workflow and API validation evidence:
+
+1. Swagger Documentation: ![Swagger Docs](Screenshots/localhost_8000_docs.png)
+2. Health Endpoint Test: ![Health Check](Screenshots/api%20health.png)
+3. SRS Generation Response: ![SRS Generation](Screenshots/srs%20generation.png)
+4. Output Evidence 1: ![Output 1](Screenshots/output%201.png)
+5. Output Evidence 2: ![Output 2](Screenshots/output%202.png)
+6. Output Evidence 3: ![Output 3](Screenshots/output%203.png)
+7. Output Evidence 4: ![Output 4](Screenshots/output%204.png)
+8. Output Evidence 5: ![Output 5](Screenshots/output%205.png)
+9. Output Evidence 6: ![Output 6](Screenshots/output%206.png)
+10. GitHub PR Merged Status: ![PR Merged](Screenshots/GitHub%20Meged.png)
+
 ## 📚 How AI Was Used
 
 1. **Prompt Engineering:** Crafted detailed instructions to guide LLM output
@@ -471,5 +495,5 @@ BA Development Team
 ---
 
 **Status:** In Development  
-**Last Updated:** 2026-06-23  
+**Last Updated:** 2026-06-24  
 **Version:** 0.1.0
