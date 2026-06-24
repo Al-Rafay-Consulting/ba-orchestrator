@@ -348,6 +348,54 @@ The following screenshots are included for workflow and API validation evidence:
 9. Output Evidence 6: ![Output 6](Screenshots/output%206.png)
 10. GitHub PR Merged Status: ![PR Merged](Screenshots/GitHub%20Meged.png)
 
+## 🎨 Frontend Enhancement: BA Engine UI Workspace
+
+To improve usability and demonstrate the system, I implemented a modern frontend interface that serves at `http://localhost:8000/app`.
+
+### Frontend Features
+- **Dashboard layout:** Responsive sidebar + main workspace with smooth animations
+- **History panel:** Browse and reload previous prompts/SRS generations (stored in browser localStorage)
+- **Input section:** Large textarea for unstructured client requirements with real-time character counter
+- **Loading state:** Visual progress indicator with pulsing animation during SRS generation
+- **Structured SRS viewer:** Clean, readable sections instead of raw JSON:
+  - Project Overview
+  - Objectives
+  - Stakeholders
+  - Functional Requirements (with priority levels: CRITICAL, HIGH, MEDIUM, LOW)
+  - Non-Functional Requirements
+  - Assumptions, Constraints, Acceptance Criteria
+- **Output actions:**
+  - Copy SRS button (copy entire SRS to clipboard with visual feedback)
+  - Export options: PDF or Word document download
+- **Error handling:** User-friendly error messages for failed API calls (with recovery suggestions)
+- **Responsive design:** Works on desktop, tablet, and mobile devices
+
+### Tech Stack
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+)
+- **Serving:** FastAPI static asset mounting via `StaticFiles`
+- **Libraries:** jsPDF for PDF export (loaded via CDN)
+- **State Management:** Browser localStorage for history persistence (max 20 entries)
+- **Styling:** CSS Grid + Flexbox, CSS custom properties for theming
+
+### How to Use the Frontend
+1. Start server: `python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000`
+2. Open browser: `http://localhost:8000/app`
+3. Enter a messy client requirement in the textarea
+4. Click `Generate SRS` button
+5. Review the structured output
+6. Copy to clipboard or export as PDF/Word document
+7. Browse history on the left sidebar to re-view previous requests
+
+### Files Added/Modified
+- **src/static/index.html** - Frontend UI markup (~140 lines)
+- **src/static/styles.css** - Responsive styling with animations (~480 lines)
+- **src/static/app.js** - Logic for API calls, rendering, history, export (~590 lines)
+- **src/main.py** - Added `/app` route and static file serving
+- **tests/test_api.py** - Added test coverage for frontend route
+
+### Frontend Screenshots
+- Frontend Dashboard: ![App Dashboard](Screenshots/localhost_8000_app.png)
+
 ## 📚 How AI Was Used
 
 1. **Prompt Engineering:** Crafted detailed instructions to guide LLM output
