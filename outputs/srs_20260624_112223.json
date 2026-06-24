@@ -1,0 +1,158 @@
+{
+  "generated_at": "2026-06-24T11:22:23.034215",
+  "client_request": "We need a system where customers can book appointments online and admin can manage bookings",
+  "srs": {
+    "projectOverview": {
+      "projectName": "Online Appointment Management System",
+      "clientDescription": "We need a system where customers can book appointments online and admin can manage bookings",
+      "cleanDescription": "A robust, web-based platform designed to enable customers to seamlessly schedule, view, and manage appointments online for various services. Concurrently, the system will provide administrative users with comprehensive tools to efficiently oversee bookings, service catalogs, staff availability, and overall system configuration.",
+      "businessGoal": "To enhance operational efficiency by automating appointment scheduling, improve customer satisfaction through self-service options, and provide administrators with effective tools for managing service operations."
+    },
+    "objectives": [
+      "Enable customers to book, view, and manage appointments independently 24/7.",
+      "Streamline administrative tasks related to appointment management, service configuration, and staff scheduling.",
+      "Reduce manual errors and improve data accuracy in booking processes.",
+      "Provide real-time visibility into appointment availability and booking status for all stakeholders."
+    ],
+    "stakeholders": [
+      {
+        "role": "Customer",
+        "description": "Individuals seeking to book and manage services offered by the business."
+      },
+      {
+        "role": "Administrator",
+        "description": "Personnel responsible for managing services, staff, bookings, and system configurations."
+      },
+      {
+        "role": "Service Provider / Staff",
+        "description": "Individuals delivering the services, needing to view their assigned schedules and availability."
+      },
+      {
+        "role": "Business Owner / Manager",
+        "description": "Stakeholders overseeing business operations, interested in reports and overall system performance."
+      }
+    ],
+    "functionalRequirements": [
+      {
+        "id": "FR-001",
+        "title": "Customer Account Management",
+        "description": "The system shall allow customers to register for an account, log in securely, and manage their personal profile information.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "A new customer can successfully register with a unique email address and password.",
+          "An existing customer can log in using their registered credentials.",
+          "Customers can update their profile information (e.g., name, contact details) after authentication.",
+          "The system handles forgotten passwords through a secure recovery process."
+        ]
+      },
+      {
+        "id": "FR-002",
+        "title": "Service Browsing and Selection",
+        "description": "Customers shall be able to browse all available services, view their detailed descriptions, durations, and pricing, and select a service to book.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "The system displays a comprehensive list of all active services.",
+          "Each service entry clearly presents its name, description, estimated duration, and price.",
+          "Customers can select a specific service to initiate the booking process."
+        ]
+      },
+      {
+        "id": "FR-003",
+        "title": "Appointment Booking",
+        "description": "Customers shall be able to select an available date and time slot for a chosen service, confirm their booking, and receive immediate confirmation.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "The system displays available time slots based on service duration, staff availability, and existing bookings.",
+          "Customers can select a preferred date and time from the available options.",
+          "Upon successful booking, the customer receives an immediate on-screen confirmation.",
+          "A confirmation email detailing the appointment (service, date, time, staff) is sent to the customer."
+        ]
+      },
+      {
+        "id": "FR-004",
+        "title": "Customer Appointment Management",
+        "description": "Authenticated customers shall be able to view their upcoming and past appointments, and have the option to cancel or reschedule upcoming appointments within defined business rules.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "Customers can access a personalized dashboard listing all their upcoming and past appointments.",
+          "For upcoming appointments, customers can initiate a cancellation, receiving an email confirmation.",
+          "For upcoming appointments, customers can initiate a reschedule, selecting a new available slot and receiving an email confirmation.",
+          "Cancellation/rescheduling options are disabled for appointments past a predefined cutoff period."
+        ]
+      },
+      {
+        "id": "FR-005",
+        "title": "Administrator Service Management",
+        "description": "Administrators shall have full capabilities to add, edit, activate, deactivate, and remove services offered by the business, including their details.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "Administrators can create a new service, specifying its name, description, duration, and price.",
+          "Administrators can modify any detail of an existing service.",
+          "Administrators can deactivate a service, making it unavailable for new bookings, without deleting historical data.",
+          "Administrators can view a list of all services, including their active/inactive status."
+        ]
+      },
+      {
+        "id": "FR-006",
+        "title": "Administrator Booking Management",
+        "description": "Administrators shall be able to view all bookings, create new bookings on behalf of customers, and modify or cancel existing customer appointments.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "Administrators can view all appointments in a searchable and filterable calendar or list format.",
+          "Administrators can manually create a new appointment for a customer, assigning service, date, time, and staff.",
+          "Administrators can modify the date, time, or assigned staff for any existing booking, with customer notification.",
+          "Administrators can cancel any customer's appointment, triggering an appropriate notification to the customer."
+        ]
+      }
+    ],
+    "nonFunctionalRequirements": [
+      {
+        "id": "NFR-001",
+        "title": "System Availability",
+        "type": "Availability",
+        "description": "The system shall maintain 99.5% uptime, excluding planned maintenance windows, to ensure continuous customer access."
+      },
+      {
+        "id": "NFR-002",
+        "title": "Performance - Page Load Times",
+        "type": "Performance",
+        "description": "All public-facing pages shall load within 3 seconds under normal network conditions and concurrent user load. Key booking actions (e.g., confirming an appointment) shall complete within 2 seconds."
+      },
+      {
+        "id": "NFR-003",
+        "title": "Security - Data Protection",
+        "type": "Security",
+        "description": "All sensitive customer data, including personal information and booking details, shall be encrypted both in transit (TLS 1.2+) and at rest. The system must adhere to industry best practices for data privacy."
+      },
+      {
+        "id": "NFR-004",
+        "title": "Usability - Intuitive Interface",
+        "type": "Usability",
+        "description": "The user interface for both customers and administrators shall be intuitive, easy to navigate, and require minimal training for first-time users to complete core tasks. The booking process should be clear and concise."
+      },
+      {
+        "id": "NFR-005",
+        "title": "Scalability - Concurrent Users",
+        "type": "Scalability",
+        "description": "The system shall be designed to effectively support up to 1,000 concurrent active users without significant degradation in performance or responsiveness during peak hours."
+      }
+    ],
+    "assumptions": [
+      "The business will provide comprehensive and accurate data regarding all services, staff, operating hours, and booking policies prior to development.",
+      "A stable internet connection will be available for all users (customers and administrators) accessing the system.",
+      "Basic email notification services (e.g., SMTP access) are available for sending confirmations, reminders, and administrative alerts.",
+      "Payment processing functionality is considered out of scope for the initial iteration; payment collection will be handled separately (e.g., at the service location)."
+    ],
+    "constraints": [
+      "The system must be a web-based application, fully responsive and accessible via modern web browsers on desktop and mobile devices.",
+      "Initial development and deployment of core functionalities must be completed within 6 months.",
+      "The solution must adhere to the client's existing branding guidelines and visual identity."
+    ],
+    "acceptanceCriteria": [
+      "Customers can successfully book, view, and manage their appointments online without requiring manual intervention from staff.",
+      "Administrators can fully manage all aspects of services, staff schedules, and customer bookings through the system's administrative interface.",
+      "The system consistently meets defined performance, security, and availability standards in a production environment.",
+      "All identified functional requirements are implemented, thoroughly tested, and verified to meet their specified acceptance criteria."
+    ]
+  }
+}
