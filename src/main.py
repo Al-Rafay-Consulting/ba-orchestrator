@@ -3,14 +3,20 @@ BA Engine Orchestrator - Main FastAPI Application
 Convert messy client requests to structured SRS documents using AI
 """
 
+from pathlib import Path
+
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import time
 
 from src.utils.logger import logger
 from src.utils.config import Config
 from src.api.routes import router
+
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
 
 # Create FastAPI application
 app = FastAPI(
@@ -38,7 +44,7 @@ async def log_requests(request: Request, call_next):
     """Log all incoming requests"""
     
     # Log request
-    logger.info(f"→ {request.method} {request.url.path}")
+    logger.info(f"[REQ] {request.method} {request.url.path}")
     
     start_time = time.time()
     
@@ -46,17 +52,20 @@ async def log_requests(request: Request, call_next):
         response = await call_next(request)
         process_time = time.time() - start_time
         
-        logger.info(f"← {response.status_code} ({process_time:.3f}s)")
+        logger.info(f"[RES] {response.status_code} ({process_time:.3f}s)")
         
         return response
     except Exception as e:
         process_time = time.time() - start_time
-        logger.error(f"✗ Error: {str(e)} ({process_time:.3f}s)")
+        logger.error(f"[ERROR] {str(e)} ({process_time:.3f}s)")
         raise
 
 
 # Include API routes
 app.include_router(router)
+
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 # Root endpoint
@@ -75,6 +84,13 @@ async def root():
         },
         "status": "running"
     }
+
+
+@app.get("/app", tags=["Frontend"])
+async def frontend_app():
+    """Serve the frontend workspace for the BA Engine UI."""
+
+    return FileResponse(STATIC_DIR / "index.html")
 
 
 # Startup event

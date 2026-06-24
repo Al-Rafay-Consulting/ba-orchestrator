@@ -47,6 +47,13 @@ class TestValidation:
                     "description": "Test feature description",
                     "priority": "HIGH",
                     "acceptance_criteria": ["Criteria 1"]
+                },
+                {
+                    "id": "FR-002",
+                    "title": "Second Test Feature",
+                    "description": "Second feature description",
+                    "priority": "MEDIUM",
+                    "acceptance_criteria": ["Criteria 2"]
                 }
             ],
             "nonFunctionalRequirements": [
@@ -65,6 +72,17 @@ class TestValidation:
         assert response.status_code == 200
         data = response.json()
         assert data["is_valid"] == True
+
+
+class TestFrontend:
+    """Test frontend workspace endpoint"""
+
+    def test_frontend_app_serves_html(self):
+        """Verify the static frontend is served from /app"""
+        response = client.get("/app")
+        assert response.status_code == 200
+        assert "text/html" in response.headers["content-type"]
+        assert "BA Engine AI" in response.text
 
 
 class TestRoot:
