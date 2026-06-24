@@ -10,6 +10,15 @@ from src.utils.config import Config
 from src.utils.logger import logger
 
 
+class LLMServiceError(Exception):
+    """Structured LLM exception with HTTP-compatible status code."""
+
+    def __init__(self, message: str, status_code: int = 502):
+        super().__init__(message)
+        self.message = message
+        self.status_code = status_code
+
+
 class LLMService:
     """Service for interacting with Google Gemini API"""
     
@@ -56,8 +65,32 @@ class LLMService:
                 return None
                 
         except Exception as e:
-            logger.error(f"Error in LLM service: {str(e)}")
-            return None
+            error_text = str(e)
+            logger.error(f"Error in LLM service: {error_text}")
+
+            # Map common external API failures to clearer HTTP statuses.
+            if "429" in error_text or "quota" in error_text.lower() or "rate limit" in error_text.lower():
+                raise LLMServiceError(
+                    "Gemini API quota exceeded. Please check rate limits/billing and retry later.",
+                    status_code=429,
+                )
+
+            if "401" in error_text or "403" in error_text or "api key" in error_text.lower():
+                raise LLMServiceError(
+                    "Gemini API authentication failed. Verify your API key and account permissions.",
+                    status_code=401,
+                )
+
+            if "404" in error_text and "models/" in error_text:
+                raise LLMServiceError(
+                    "Configured Gemini model is unavailable for this API version.",
+                    status_code=502,
+                )
+
+            raise LLMServiceError(
+                "Failed to generate SRS from LLM provider.",
+                status_code=502,
+            )
     
     def _build_prompt(self, client_request: str) -> str:
         """

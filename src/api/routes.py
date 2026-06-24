@@ -12,7 +12,7 @@ from src.models.schemas import (
     ErrorResponse,
     SRSResponse
 )
-from src.services.llm_service import LLMService
+from src.services.llm_service import LLMService, LLMServiceError
 from src.services.validation_service import ValidationService
 from src.utils.config import Config
 from src.utils.logger import logger
@@ -56,8 +56,8 @@ async def generate_srs(request: SRSRequest):
         if not srs_dict:
             logger.error("LLM returned no output")
             raise HTTPException(
-                status_code=500,
-                detail="Failed to generate SRS from LLM"
+                status_code=502,
+                detail="LLM returned empty output"
             )
         
         # Step 2: Validate and fix if needed
@@ -94,6 +94,8 @@ async def generate_srs(request: SRSRequest):
             }
         )
         
+    except LLMServiceError as e:
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except HTTPException:
         raise
     except Exception as e:
