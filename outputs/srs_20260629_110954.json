@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-06-29T11:09:54.871888",
+  "client_request": "A small clinic needs a web app where patients can register, book or cancel appointments, get SMS or email reminders, and view doctor availability. Reception staff should manage schedules and patient records, while admins should see daily reports. The system must be simple, mobile-friendly, and secure.",
+  "srs": {
+    "projectOverview": {
+      "projectName": "Clinic Appointment & Patient Management System",
+      "clientDescription": "A small clinic needs a web app where patients can register, book or cancel appointments, get SMS or email reminders, and view doctor availability. Reception staff should manage schedules and patient records, while admins should see daily reports. The system must be simple, mobile-friendly, and secure.",
+      "cleanDescription": "Develop a web-based application for a small clinic to streamline patient appointment management, record keeping, and administrative reporting. The system will enable patients to self-serve for registration, appointment booking, cancellation, and receipt of reminders. Reception staff will utilize the system for comprehensive schedule management and patient record administration, while clinic administrators will gain insight through daily operational reports. The application prioritizes user-friendliness, mobile accessibility, and robust security.",
+      "businessGoal": "To enhance operational efficiency, improve patient experience, and secure patient data within the clinic by digitizing appointment scheduling, patient record management, and reporting processes."
+    },
+    "objectives": [
+      "Enable patients to independently manage their appointments (booking, cancellation) and receive timely reminders via a user-friendly web interface.",
+      "Provide reception staff with efficient tools for comprehensive doctor schedule management and patient record administration.",
+      "Offer clinic administrators clear, concise daily operational reports to monitor key performance indicators.",
+      "Ensure the application is intuitive, accessible across various devices, and maintains robust data security standards.",
+      "Reduce manual workload and improve accuracy in appointment scheduling and patient information handling for clinic staff."
+    ],
+    "stakeholders": [
+      {
+        "role": "Patients",
+        "description": "Individuals seeking medical care who need to register, book, view, and cancel appointments, and receive reminders."
+      },
+      {
+        "role": "Reception Staff",
+        "description": "Clinic employees responsible for managing doctor schedules, patient appointments, and patient demographic records."
+      },
+      {
+        "role": "Administrators",
+        "description": "Clinic management personnel who require access to daily operational reports and system oversight."
+      },
+      {
+        "role": "Clinic Management",
+        "description": "Decision-makers responsible for the overall success, operational efficiency, and strategic direction of the clinic."
+      }
+    ],
+    "functionalRequirements": [
+      {
+        "id": "FR-001",
+        "title": "Patient User Account Management",
+        "description": "The system shall allow new patients to register for an account and existing patients to log in securely to access their functionalities.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "A new patient can create an account using a unique email address and password.",
+          "An existing patient can successfully log in using their registered credentials.",
+          "The system shall provide a 'forgot password' functionality for account recovery."
+        ]
+      },
+      {
+        "id": "FR-002",
+        "title": "Patient Appointment Management",
+        "description": "Patients shall be able to view doctor availability, book new appointments, and cancel existing appointments through the web application.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "A patient can view available time slots for doctors based on date and specialty.",
+          "A patient can successfully book an appointment for an available slot.",
+          "A patient can cancel a previously booked appointment, adhering to defined cancellation policies (e.g., minimum notice period).",
+          "The system shall send an immediate confirmation (email/SMS) upon successful booking or cancellation."
+        ]
+      },
+      {
+        "id": "FR-003",
+        "title": "Automated Appointment Reminders",
+        "description": "The system shall automatically send reminders to patients for their upcoming appointments via SMS and/or email.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "Patients shall receive an email reminder 24 hours prior to their appointment time.",
+          "Patients shall receive an SMS reminder (if mobile number provided) 2 hours prior to their appointment time.",
+          "Reminder messages shall include the appointment date, time, doctor's name, and clinic name."
+        ]
+      },
+      {
+        "id": "FR-004",
+        "title": "Reception Staff Schedule Management",
+        "description": "Reception staff shall have the capability to view, create, modify, and block doctor availability slots within the system.",
+        "priority": "CRITICAL",
+        "acceptance_criteria": [
+          "Reception staff can view a consolidated daily, weekly, and monthly schedule for all doctors.",
+          "Reception staff can add new availability slots for doctors based on their working hours.",
+          "Reception staff can modify or delete existing availability slots as required.",
+          "Reception staff can block specific time slots for non-patient activities (e.g., meetings, breaks)."
+        ]
+      },
+      {
+        "id": "FR-005",
+        "title": "Reception Staff Patient Record Management",
+        "description": "Reception staff shall be able to securely access, create, update, and search patient demographic records.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "Reception staff can search for patient records using various criteria (e.g., name, patient ID, contact number).",
+          "Reception staff can view a patient's complete demographic information and appointment history.",
+          "Reception staff can add new patient details into the system.",
+          "Reception staff can update existing patient contact information or other demographic details."
+        ]
+      },
+      {
+        "id": "FR-006",
+        "title": "Administrator Daily Operational Reports",
+        "description": "Administrators shall be able to view daily summary reports on critical operational metrics such as appointments and new patient registrations.",
+        "priority": "HIGH",
+        "acceptance_criteria": [
+          "Administrators can access a daily report showing the total number of appointments booked.",
+          "Administrators can access a daily report showing the total number of appointments cancelled.",
+          "Administrators can access a daily report showing the count of new patient registrations.",
+          "Reports shall be accessible via a dedicated and secure administrative dashboard."
+        ]
+      }
+    ],
+    "nonFunctionalRequirements": [
+      {
+        "id": "NFR-001",
+        "title": "Usability",
+        "type": "Usability",
+        "description": "The system shall provide an intuitive and easy-to-use interface for all user roles (patients, reception staff, administrators) to minimize training requirements and operational errors."
+      },
+      {
+        "id": "NFR-002",
+        "title": "Mobile Responsiveness",
+        "type": "Accessibility",
+        "description": "The web application shall be fully responsive, ensuring optimal display and functionality across various devices including desktops, laptops, tablets, and smartphones without compromising user experience."
+      },
+      {
+        "id": "NFR-003",
+        "title": "Security",
+        "type": "Security",
+        "description": "The system shall implement robust security measures, including data encryption (in transit and at rest), authentication, and authorization controls, to protect sensitive patient information from unauthorized access, disclosure, alteration, or destruction."
+      },
+      {
+        "id": "NFR-004",
+        "title": "Performance",
+        "type": "Performance",
+        "description": "The system shall be responsive, with critical user actions (e.g., loading a schedule, booking an appointment) completing within 3 seconds under normal operating load conditions."
+      },
+      {
+        "id": "NFR-005",
+        "title": "Data Integrity",
+        "type": "Data Integrity",
+        "description": "The system shall ensure that all patient records, appointment schedules, and generated reports are accurate, consistent, and free from duplication or corruption."
+      }
+    ],
+    "assumptions": [
+      "The clinic has a stable and reliable internet connection for consistent access to the web application.",
+      "Patients are assumed to have access to email and/or mobile phones for account registration and receiving reminders.",
+      "The clinic will provide comprehensive data regarding doctor schedules, specialties, and operational policies relevant to appointment management.",
+      "The system will integrate with an external SMS gateway provider for sending reminders, with associated costs handled separately.",
+      "Compliance requirements for patient data privacy (e.g., local healthcare regulations) will be explicitly defined and communicated by the client."
+    ],
+    "constraints": [
+      "The application must be a web-based solution, accessible via modern web browsers without requiring specialized client-side software installation.",
+      "The initial project scope is focused solely on appointment management, basic patient records, and administrative reporting, excluding advanced features like billing or electronic health records (EHR) for Phase 1.",
+      "The development budget and timeline are reflective of a small clinic's resources, necessitating a focused feature set and efficient implementation.",
+      "The system must adhere to all applicable data privacy and security regulations relevant to healthcare data (e.g., HIPAA, GDPR, or country-specific equivalents)."
+    ],
+    "acceptanceCriteria": [
+      "All identified user roles (Patients, Reception Staff, Administrators) can successfully perform their respective core tasks as outlined in the functional requirements.",
+      "The application fully meets all defined non-functional requirements, particularly regarding usability, mobile responsiveness, and data security.",
+      "The system demonstrably improves the operational efficiency of appointment scheduling and patient record access, reducing manual effort and errors.",
+      "Positive feedback (e.g., 80% satisfaction rate) from a pilot user group representing each stakeholder role regarding the system's ease of use and functionality.",
+      "The system reliably sends automated appointment reminders and generates accurate daily operational reports without manual intervention."
+    ]
+  }
+}
